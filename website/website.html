@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPAO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* 基本樣式 */
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            color: #333;
+            background-image: url('./pngtree-surreal-mountain-and-moon-scene-pc-wallpaper-image_16147907.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 背景遮罩 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(51, 51, 51, 0.3);
+            z-index: -1;
+        }
+
+        /* 頁首標題 */
+        header {
+            background-color: rgba(51, 51, 51, 0.3);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        /* 導航列樣式 */
+        nav {
+            background-color: rgba(51, 51, 51, 0.8);
+            padding: 10px;
+            text-align: center;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        nav a {
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s, transform 0.2s;
+            border: none; /* 移除按鈕邊框 */
+            outline: none;
+        }
+
+        nav a:hover {
+            color: #007bff; /* 變為藍色文字，無背景框 */
+            transform: scale(1.05); /* 略微放大效果 */
+            text-decoration: underline;
+        }
+
+        /* 區塊樣式 */
+        section {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        section.show {
+            display: block;
+            opacity: 1;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        /* 漸入效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+    <script>
+        // 顯示選中的區塊並隱藏其他區塊
+        function showSection(sectionId) {
+            var sections = document.querySelectorAll("section");
+            sections.forEach(section => {
+                section.classList.remove("show");
+            });
+            document.getElementById(sectionId).classList.add("show");
+        }
+
+        // 頁面載入後顯示首頁
+        window.onload = function() {
+            showSection('home');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- 頁首 -->
+    <header>
+        <h1>GLACE</h1>
+        <p>早安午安晚安</p>
+    </header>
+
+    <!-- 導航列 -->
+    <nav>
+        <a onclick="showSection('home')">這是首頁</a>
+        <a onclick="showSection('self-intro')">關於我</a>
+        <a onclick="showSection('programming-problems')">電神不要點</a>
+        <a onclick="showSection('articles')">可悲文書部落格</a>
+    </nav>
+
+    <!-- 首頁 -->
+    <section id="home" class="show">
+        <h2>早安午安晚阿</h2>
+        <p>能夠進來這地方屬實不易，這個網站的生成只能說意外連連，也拖了非常的久，這裡會持續更新一些東西，版面現在有點粗糙看得不舒服的話就請見諒</p>
+        <p>來都來了就隨便看看吧</p>
+    </section>
+
+    <!-- 個人介紹 -->
+    <section id="self-intro">
+        <h2>GPAO</h2>
+        <p>額.....我也沒什麼好自我介紹的，反正認識就認識不認識就不認識</p>
+        <p>嘉義高中資研社文書，社長超有病</p>
+    </section>
+
+    <!-- 程式題目解答 -->
+    <section id="programming-problems">
+        <h2>解題解答</h2>
+        <div class="problem">
+            <p>想看更多請點我</p>
+            <h3>題目1: 兩數相加</h3>
+            <p>題目描述：給定兩個整數，返回它們的和。</p>
+            <pre><code>function add(a, b) { return a + b; }</code></pre>
+        </div>
+        <div class="problem">
+            <h3>題目2: 字串反轉</h3>
+            <p>題目描述：給定一個字串，返回其反轉後的結果。</p>
+            <pre><code>function reverseString(str) { return str.split('').reverse().join(''); }</code></pre>
+        </div>
+    </section>
+
+    <!-- 文章 -->
+    <section id="articles">
+        <h2>歡迎來到可憐文書部落格</h2>
+        <div class="article">
+            <h3>我的第一篇技術文章</h3>
+            <p>這篇文章主要探討了程式設計中常見的錯誤及如何避免。</p>
+            <a href="https://你的文章連結.com">閱讀更多</a>
+        </div>
+        <div class="article">
+            <h3>學習JavaScript的心得</h3>
+            <p>分享我學習JavaScript的過程和一些小技巧。</p>
+            <a href="https://你的文章連結.com">閱讀更多</a>
+        </div>
+    </section>
+
+</body>
+</html>
